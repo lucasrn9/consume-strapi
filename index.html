@@ -9,7 +9,17 @@
 <body>
     <h1>Test website that will consume my strapi API</h1>
     <script>
-        fetch('https://strpapp.onrender.com/api/restaurants').then(res=>res.json()).then(data=>{console.log(data)})
+        fetch('https://strpapp.onrender.com/api/restaurants').then(res=>res.json()).then(data=>{
+        const successHeading = document.createElement("h1")
+        let text
+        if(data.data[0].attributes.name){
+            text = data.data[0].attributes.name
+        } else {
+            text = "error in fetch name"
+        }
+        successHeading.innerText = text
+        document.body.appendChild(successHeading)
+        })
     </script>
 </body>
 </html>
